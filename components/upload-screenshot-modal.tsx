@@ -79,6 +79,7 @@ export function UploadScreenshotModal({ isOpen, onClose, onUpload }: UploadScree
         {imageUrl && (
           <div className="mt-4">
             <p className="font-medium mb-2">Preview:</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl || "/placeholder.svg"}
               alt="Preview"

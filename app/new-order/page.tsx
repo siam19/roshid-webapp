@@ -35,6 +35,7 @@ export default function NewOrderPage() {
         >
           {screenshotUrl ? (
             <div className="flex flex-col items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={screenshotUrl || "/placeholder.svg"} alt="Screenshot" className="max-h-20 object-contain" />
               <span className="text-sm">Change Screenshot</span>
             </div>

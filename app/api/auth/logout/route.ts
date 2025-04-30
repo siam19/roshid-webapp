@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(_req: NextRequest) {
   try {
     // Build Auth0 logout URL with federated parameter

@@ -44,6 +44,7 @@ export class ApiClient {
   /**
    * Make a POST request to the API
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async post<T, R = any>(endpoint: string, body: R): Promise<ApiResponse<T>> {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
@@ -73,6 +74,7 @@ export class ApiClient {
   /**
    * Make a PUT request to the API
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async put<T, R = any>(endpoint: string, body: R): Promise<ApiResponse<T>> {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {

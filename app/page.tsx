@@ -3,9 +3,11 @@
 import { useUser } from '@auth0/nextjs-auth0'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Link from 'next/link'
-import { MenuSheet } from '@/components/menu-sheet'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { auth0 } from '@/lib/auth0'
+import { MenuSheet } from '@/components/menu-sheet'
 
 export default function HomePage() {
   const { user, error, isLoading } = useUser()
