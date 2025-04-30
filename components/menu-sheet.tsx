@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { useUser } from '@auth0/nextjs-auth0'
 
+
 interface MenuSheetProps {
   businessName: string
 }

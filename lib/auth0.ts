@@ -1,17 +1,34 @@
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 
-// Initialize the Auth0 client 
+// Initialize the Auth0 client
 export const auth0 = new Auth0Client({
-  // Options are loaded from environment variables by default
+  // Basic configuration
+  clientId: process.env.AUTH0_CLIENT_ID,
+  clientSecret: process.env.AUTH0_CLIENT_SECRET,
+  domain: process.env.AUTH0_DOMAIN,
+  baseURL: process.env.APP_BASE_URL,
+  secret: process.env.AUTH0_SECRET,
+  
+  // Required openid scope
   authorizationParameters: {
-    // Include required openid scope along with any other scopes from environment
-    // TODO: Look into using a more secure way to handle scopes
-    scope: process.env.AUTH0_SCOPE ? `openid ${process.env.AUTH0_SCOPE}` : 'openid profile email',
+    scope: 'openid profile email',
+    // Don't use empty audience
+    // audience: process.env.AUTH0_AUDIENCE
   },
-  // Configure logout to redirect to LANDING_SITE_URL
+  
+  // Configure routes
   routes: {
+    callback: '/api/auth/callback',
+    login: '/api/auth/login',
     logout: {
-      returnTo: process.env.LANDING_SITE_URL,
+      path: '/api/auth/logout',
+      returnTo: process.env.LANDING_SITE_URL || 'http://localhost:3001'
     }
+  },
+  
+  // Session configuration
+  session: {
+    rolling: true,
+    absoluteDuration: 24 * 60 * 60, // 24 hours
   }
 });

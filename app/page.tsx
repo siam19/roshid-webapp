@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { MenuSheet } from '@/components/menu-sheet'
+import { auth0 } from '@/lib/auth0'
 
 export default function HomePage() {
   const { user, error, isLoading } = useUser()
@@ -18,7 +19,7 @@ export default function HomePage() {
     
     // Redirect to Auth0 login if unauthorized error
     if (error && error.message === 'Unauthorized') {
-      window.location.href = '/auth/login'
+      window.location.href = '/api/auth/login'
     }
   }, [user, isLoading, router, error])
 
@@ -51,7 +52,6 @@ export default function HomePage() {
         <h1 className="text-lg font-medium">Roshid</h1>
         <MenuSheet businessName="Business Name" />
       </header>
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8 text-center">
@@ -62,7 +62,7 @@ export default function HomePage() {
           </p>
           
           <a 
-            href="/auth/login" 
+            href="/api/auth/login" 
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
             Log In
