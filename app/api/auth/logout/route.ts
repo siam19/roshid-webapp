@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     // Build Auth0 logout URL with federated parameter
     const url = new URL('/v2/logout', `https://${process.env.AUTH0_DOMAIN}`);

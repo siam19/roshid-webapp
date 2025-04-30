@@ -1,12 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
-import { AuthProvider } from "@/components/auth-provider"
 import { Auth0Provider } from '@auth0/nextjs-auth0'
 import { auth0 } from '@/lib/auth0'
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Roshid",
@@ -14,7 +10,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth0.getSession()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const session = await (auth0 as any).getSession()
 
   return (
     <html lang="en">
