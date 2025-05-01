@@ -5,7 +5,6 @@ import Link from "next/link"
 import { ChevronLeft, Plus } from "lucide-react"
 import { OrderDetailsModal } from "@/components/order-details-modal"
 import { MenuSheet } from "@/components/menu-sheet"
-import { useUser } from '@auth0/nextjs-auth0'
 
 // Sample order data
 const sampleOrders = [
@@ -52,12 +51,11 @@ const sampleOrders = [
 ]
 
 export default function OrdersPage() {
-  const { user } = useUser()
   const [selectedOrder, setSelectedOrder] = useState<(typeof sampleOrders)[0] | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  // Get user name from Auth0 profile or use default
-  const storeName = user?.name || "Roshid"
+  // Default store name without Auth0
+  const storeName = "Roshid"
 
   const handleOrderClick = (order: (typeof sampleOrders)[0]) => {
     setSelectedOrder(order)

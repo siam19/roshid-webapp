@@ -1,8 +1,16 @@
+'use client';
+
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
 import { MenuSheet } from "@/components/menu-sheet"
 
 export default function ProfilePage() {
+  // Default user values without Auth0
+  const defaultUser = {
+    name: "User Name",
+    email: "user@example.com"
+  }
+  
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
@@ -20,10 +28,10 @@ export default function ProfilePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <label className="block font-medium">Business Name</label>
+            <label className="block font-medium">User Name</label>
             <input
               type="text"
-              defaultValue="Business Name"
+              defaultValue={defaultUser.name}
               className="w-full p-3 rounded-lg bg-gray-300 outline-none"
             />
           </div>
@@ -32,7 +40,7 @@ export default function ProfilePage() {
             <label className="block font-medium">Email</label>
             <input
               type="email"
-              defaultValue="business@example.com"
+              defaultValue={defaultUser.email}
               className="w-full p-3 rounded-lg bg-gray-300 outline-none"
             />
           </div>

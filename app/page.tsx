@@ -1,50 +1,11 @@
 "use client"
 
-import { useUser } from '@auth0/nextjs-auth0'
-import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Link from 'next/link'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { auth0 } from '@/lib/auth0'
 import { MenuSheet } from '@/components/menu-sheet'
 
 export default function HomePage() {
-  const { user, error, isLoading } = useUser()
   const router = useRouter()
-
-  useEffect(() => {
-    // Redirect to orders page if user is authenticated
-    if (user && !isLoading) {
-      router.push('/orders')
-    }
-    
-    // Redirect to Auth0 login if unauthorized error
-    if (error && error.message === 'Unauthorized') {
-      window.location.href = '/api/auth/login'
-    }
-  }, [user, isLoading, router, error])
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="text-lg">Loading...</p>
-        </div>
-      </div>
-    )
-  }
-
-  // For other errors (not Unauthorized)
-  if (error && error.message !== 'Unauthorized') {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <p className="text-lg text-red-500">An error occurred: {error.message}</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -63,12 +24,12 @@ export default function HomePage() {
             Please log in to access your orders and manage your business.
           </p>
           
-          <a 
-            href="/api/auth/login" 
+          <Link 
+            href="/orders" 
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
             Log In
-          </a>
+          </Link>
         </div>
       </div>
     </div>

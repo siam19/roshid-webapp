@@ -3,8 +3,6 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { useUser } from '@auth0/nextjs-auth0'
-
 
 interface MenuSheetProps {
   businessName: string
@@ -12,7 +10,8 @@ interface MenuSheetProps {
 
 export function MenuSheet({ businessName }: MenuSheetProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const { user } = useUser()
+  // We'll assume the user is always logged in for now
+  const isLoggedIn = true
 
   return (
     <>
@@ -57,14 +56,14 @@ export function MenuSheet({ businessName }: MenuSheetProps) {
                   Settings
                 </Link>
                 
-                {user && (
-                  <a
-                    href="/api/auth/logout"
+                {isLoggedIn && (
+                  <Link
+                    href="/"
                     className="block p-2 hover:bg-gray-100 rounded-lg text-red-600"
                     onClick={() => setIsOpen(false)}
                   >
                     Logout
-                  </a>
+                  </Link>
                 )}
               </nav>
             </div>
